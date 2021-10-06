@@ -83,6 +83,8 @@ If you want to choose the raw meaning, you could run the following SQL statement
 ```SQL
 SELECT word, sub, IPA FROM words
 ```
-![OUTPUT2](https://github.com/tquangsdh20/memrise/blob/main/pic/OUTPUT3.PNG?raw=true)
+Steps : **Execute SQL > Typing SQL Statements > Run**
+
+![OUTPUT2](https://github.com/tquangsdh20/memrise/blob/main/pic/OUTPUT3.png?raw=true)
 
 ### [Github](https://github.com/tquangsdh20/memrise)
