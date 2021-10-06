@@ -1,0 +1,6 @@
+#### CHANGES
+
+06-10-2021: V1.0.0 : Scraping Memrise Course with ID, generate as sql
+- Support scraping the courses in MEM to take the vocabulary
+- Support scraping IPA of English Language (US and UK)
+- Support translate to your mother language
