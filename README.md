@@ -9,7 +9,7 @@
 
 ## Appplication Requires
 
-### Install SQLite3 : [SQLite](https://www.sqlite.org/)
+### Install DB Browser : [SQLite](https://sqlitebrowser.org/dl/)
 
 ### Install Library: 
 <b>Window</b>
