@@ -22,7 +22,7 @@
   ```
  <b>macOS</b>
  ```
- sudo pip3 install mateco
+ sudo pip3 install memrise
 ```
 ## Guidelines
 
