@@ -42,9 +42,31 @@ db = Database('English.sqlite') #Other format is .db
 db.connect()
 db.init()
 ```
+The output will give you the List Language's ID of the Course, remember the ID for next step. 
+```
+Language IDs:        
+    1. English UK    
+    2. English US    
+    3. Chinese       
+    4. Janpanese     
+    5. French        
+    6. Spanish Mexico
+    7. Italian
+    8. German
+    9. Russian
+    10. Dutch
+    11. Korean
+    12. Arabic
+    13. Spanish Spain
+
+```
 
 ### Scraping course with ID
-
+Regarding to Module Course with two paramemters:
+- `CourseID`: Get the Course ID as above
+- `LanguageID`: The Language ID of the Course which you study.
+  
+The following example is scraping the English course for Vietnamese with IPA of English US, so the Language ID is 2.
 ```python
 #Connect the course to scraping info this maybe take a few momment.
 course = Course(1658724,2)
