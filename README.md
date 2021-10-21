@@ -1,11 +1,9 @@
 <p align="center">
-  <h1 align="center">Library Scraping Vocabulary Languages</h1>
+  <img src="https://drive.google.com/uc?id=1WCwQC2sO9DZx7XeFUJbh0VEAUbIf1BXJ">
 </p>
 
 ## Features:
 - Support scraping the courses in MEM to take the vocabulary
-- Support scraping IPA of English Language (US and UK)
-- Support translate to your mother language
 
 ## Appplication Requires
 
@@ -30,7 +28,9 @@
 
 Access the Website: [Memrise](https://app.memrise.com/) and copy the Course ID as the following picture:
 
-![CourseID](https://github.com/tquangsdh20/memrise/blob/main/pic/CourseID.PNG?raw=true)
+<p align="center">
+  <img src="https://drive.google.com/uc?id=1WE0JGRDkPJh04Qldq0U4b7c1f9c0Wd8h">
+</p>
 
 ### Import library and initialize database
 
@@ -94,11 +94,15 @@ db.update_db_en(1658724,'fr')
 
 File output
 
-![OUTPUT](https://github.com/tquangsdh20/memrise/blob/main/pic/OUTPUT.PNG?raw=true)
+<p align="center">
+  <img src="https://drive.google.com/uc?id=1WF7apdbh4gGJLNc9RPFethChqR8cpcSH" height=200 width=600 />
+</p>
 
 Show the words table as the following steps: **Browse Data > Table > Word**
 
-![OUTPUT1](https://github.com/tquangsdh20/memrise/blob/main/pic/OUTPUT2.PNG?raw=true)
+<p align="center">
+  <img src="https://drive.google.com/uc?id=1WGAD-hIsLg-vamSRAYg219x89DqEzff3" height=500 width=800 />
+</p>
 
 If you want to choose the raw meaning, you could run the following SQL statement.
 
@@ -107,6 +111,12 @@ SELECT word, sub, IPA FROM words
 ```
 Steps : **Execute SQL > Typing SQL Statements > Run**
 
-![OUTPUT2](https://github.com/tquangsdh20/memrise/blob/main/pic/OUTPUT3.png?raw=true)
+<p align="center">
+  <img src="https://drive.google.com/uc?id=1WJTvpNUfZfY0EVgSaIOqs3u6jji3Qvr1" height=500 width=800 />
+</p>
 
-### [Github](https://github.com/tquangsdh20/memrise)
+[<b>Github:</b> https://github.com/tquangsdh20/memrise](https://github.com/tquangsdh20/memrise)
+
+### Log changes:
+
+**v1.0.0**: Implementation Scrapping Vocabulary
