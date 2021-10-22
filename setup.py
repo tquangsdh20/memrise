@@ -75,6 +75,7 @@ class BuildExt(build_ext):
         build_ext.build_extensions(self)
 
 setup(
+    name = name_package,
     version = version,
     description=description,
     long_description=long_description,
