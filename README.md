@@ -1,5 +1,5 @@
 <p align="center">
-    <img src=".github/logo.svg?sanitize=true" />
+    <img src=".github/memrise.svg?sanitize=true" />
 </p>
 
 <p align="center"> 
