@@ -30,7 +30,7 @@
 
 ### How to take Course ID?
 
-Access the Website: [Memrise](https://app.memrise.com/) and copy the Course ID as the following picture:
+Access the Website: [Memrise](https://app.memrise.com/course/) and copy the Course ID as the following picture:
 
 <p align="center">
   <img src=".github/CourseID.PNG?sanitize=true">
@@ -124,4 +124,4 @@ Steps : **Execute SQL > Typing SQL Statements > Run**
 
 **v1.0.0**: Implementation Scrapping Vocabulary  
 **v1.1.0**: Update IPA Function   
-**v1.1.0rc0** : Release check for fixing ERROR IPA and update new TRANSLATE FUNCTION  
+**v1.2.0** : Update new TRANSLATE FUNCTION  
