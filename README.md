@@ -1,5 +1,5 @@
 <p align="center">
-    <img src=".github/memrise.svg?sanitize=true" />
+    <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/memrise.svg">
 </p>
 
 <p align="center"> 
@@ -33,7 +33,7 @@
 Access the Website: [Memrise](https://app.memrise.com/course/) and copy the Course ID as the following picture:
 
 <p align="center">
-  <img src=".github/CourseID.PNG?sanitize=true">
+  <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/CourseID.PNG">
 </p>
 
 ### Import library and initialize database
@@ -98,13 +98,13 @@ db.update_db_en(1658724,'fr')
 File output
 
 <p align="center">
-  <img src=".github/OUTPUT.PNG?sanitize=true" height=200 width=600 />
+  <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/OUTPUT.PNG" height=200 width=600 />
 </p>
 
 Show the words table as the following steps: **Browse Data > Table > Word**
 
 <p align="center">
-  <img src=".github/OUTPUT2.PNG?sanitize=true" height=500 width=800 />
+  <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/OUTPUT2.PNG" height=500 width=800>
 </p>
 
 If you want to choose the raw meaning, you could run the following SQL statement.
@@ -115,7 +115,7 @@ SELECT word, sub, IPA FROM words
 Steps : **Execute SQL > Typing SQL Statements > Run**
 
 <p align="center">
-  <img src=".github/OUTPUT3.PNG?sanitize=true" height=500 width=800 />
+  <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/OUTPUT3.PNG" height=500 width=800>
 </p>
 
 [<b>Github:</b> https://github.com/tquangsdh20/memrise](https://github.com/tquangsdh20/memrise)
