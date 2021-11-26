@@ -23,7 +23,7 @@ class Data(_Data_):
         self._update(INSERT_LEVEL, __level)
         self.conn.commit()
         __words = level.get_words()
-        self._update(INSERT_WORD, level.get_words())
+        self._update(INSERT_WORD, __words)
 
     def update_course(self, course: Course) -> None:
         __course = course.get_record()

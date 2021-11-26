@@ -4,4 +4,4 @@ from .extract import Level, Course
 
 
 __all__ = ["Level", "Course", "Data"]
-__version__ = "1.2.0"
+__version__ = "1.2.1"

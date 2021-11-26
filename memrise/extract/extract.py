@@ -1,10 +1,11 @@
 import re
 import requests
 from bs4 import BeautifulSoup
-from typing import Any
+from typing import Any, List, Tuple
 
 
 PAGE = "https://app.memrise.com"
+
 
 # ******* Function Define ********
 def open_soup(url: str):
@@ -26,7 +27,9 @@ def get_name(tag_chr: str, soup: BeautifulSoup):
 # --------------------------------------------------
 
 
-def get_words(soup: BeautifulSoup, course_id: Any, level_id: Any):
+def get_words(
+    soup: BeautifulSoup, course_id: Any, level_id: Any
+) -> List[Tuple[Any, Any, Any, Any]]:
     words = []
     meanings = []
     tags = soup("div")
@@ -73,10 +76,10 @@ class Level:
         self.__words = get_words(self.__soup, CourseID, LevelID)
         self.__record = tuple([CourseID, LevelID, self.__name])
 
-    def get_words(self) -> list:
+    def get_words(self) -> List[Any]:
         return self.__words
 
-    def get_record(self) -> tuple:
+    def get_record(self) -> Tuple[Any, ...]:
         return self.__record
 
 
@@ -104,14 +107,14 @@ class Course:
         self.__record = tuple([course_id, self.__name, language_id])
         self.__levels = self.__get_levels(self.__soup)
 
-    def get_levels(self) -> list:
+    def get_levels(self) -> List[Level]:
         return self.__levels
 
-    def __get_levels(self, soup) -> list:
+    def __get_levels(self, soup) -> List[Level]:
         # Get all levels with Regular Expression End with "Digital/"
         tags = soup("a")
         levels = list()
-        expr = "/(\d)+/$"  # End with "{digital}/"
+        expr = "/(\\d)+/$"  # End with "{digital}/"
         count = 1
         for tag in tags:
             item = tag.get("href", None)
@@ -121,5 +124,5 @@ class Course:
                 count += 1
         return levels
 
-    def get_record(self) -> tuple:
+    def get_record(self) -> Tuple[Any, ...]:
         return self.__record

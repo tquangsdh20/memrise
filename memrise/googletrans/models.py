@@ -56,15 +56,16 @@ class Translated(Base):
         return self.__unicode__()
 
     def __unicode__(self):  # pragma: nocover
-        return (
-            u"Translated(src={src}, dest={dest}, text={text}, pronunciation={pronunciation}, "
-            u"extra_data={extra_data})".format(
-                src=self.src,
-                dest=self.dest,
-                text=self.text,
-                pronunciation=self.pronunciation,
-                extra_data='"' + repr(self.extra_data)[:10] + '..."',
-            )
+        return """Translated(src={src},
+        dest={dest},
+        text={text},
+        pronunciation={pronunciation},
+        extra_data={extra_data})""".format(
+            src=self.src,
+            dest=self.dest,
+            text=self.text,
+            pronunciation=self.pronunciation,
+            extra_data='"' + repr(self.extra_data)[:10] + '..."',
         )
 
     def __dict__(self):

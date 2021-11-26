@@ -1,6 +1,6 @@
 import sqlite3
 from text2ipa import get_IPAs
-from .constant import *
+from .constant import INSERT_IPA, CREATE_TABLE, WORD_IN_ENGLISH_4IPA
 
 # Copyright Library https://github.com/ssut/py-googletrans
 # from googletrans import Translator
@@ -13,10 +13,12 @@ def mergeList(l1, l2):
 
 # ----------------------------- Class Data ----------------------------
 # methods:
-# __init__ : Create new data base or connect the database if exists with conn & cur elements
+# __init__ : Create new data base or connect the database
+# if exists with conn & cur elements
 # init_database()  --> Drop all table if exists and create new
 # update_level(Level)  --> INSERT all words in level into Database
-# update_course(Course) --> Update current record of Course and call "update_level()" for all Levels exists in Course
+# update_course(Course) --> Update current record of Course and call
+# "update_level()" for all Levels exists in Course
 # update_ipa(IPA) --> Update all record in list for column IPA
 # ---------------------------------------------------------------------
 
@@ -43,9 +45,9 @@ class _Data_:
     def _update(self, cmd, data: Any):
         # Most implementation is bytes (char*) must be convert to str
         # Handle datatype input
-        if type(data) == type(tuple()):
+        if isinstance(data, tuple):
             self.cur.execute(cmd, data)
-        elif type(data) == type(list()):
+        elif isinstance(data, list):
             for record in data:
                 self.cur.execute(cmd, record)
             self.conn.commit()
@@ -68,7 +70,7 @@ class _Data_:
             ipas.append(record[1])
         ipa = get_IPAs(ipas, records[0][2])
         retL = mergeList(ipa, ids)
-        self.__update(INSERT_IPA, retL)
+        self._update(INSERT_IPA, retL)
 
     def close(self):
         """1. Commit change
