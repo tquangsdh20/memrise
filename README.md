@@ -3,7 +3,7 @@
 </p>
 
 <p align="center"> 
-   <img src="https://github.com/tquangsdh20/text2ipa/actions/workflows/test.yml/badge.svg"> <img src="https://img.shields.io/github/license/tquangsdh20/memrise"> <img src = "https://img.shields.io/bitbucket/issues-raw/tquangsdh20/memrise"> <img src = "https://img.shields.io/pypi/pyversions/memrise"> <img src="https://img.shields.io/pypi/implementation/memrise"> <img src="https://img.shields.io/github/last-commit/tquangsdh20/memrise">
+   <img src="https://github.com/tquangsdh20/text2ipa/actions/workflows/test.yml/badge.svg"> <img src = "https://codecov.io/gh/tquangsdh20/memrise/branch/main/graphs/badge.svg?branch=main"> <img src = "https://img.shields.io/pypi/pyversions/memrise"> <img src="https://img.shields.io/pypi/implementation/memrise"> <img src="https://img.shields.io/github/last-commit/tquangsdh20/memrise"> <img src="https://img.shields.io/github/license/tquangsdh20/memrise">
 </p>
 
 ## Features:
