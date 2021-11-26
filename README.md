@@ -3,7 +3,7 @@
 </p>
 
 <p align="center"> 
-   <a href="https://github.com/tquangsdh20/memrise/runs/4333596041"><img src="https://github.com/tquangsdh20/text2ipa/actions/workflows/test.yml/badge.svg"></a> <a href="https://app.codecov.io/gh/tquangsdh20/memrise"><img src = "https://codecov.io/gh/tquangsdh20/memrise/branch/main/graphs/badge.svg?branch=main"></a> <img src = "https://img.shields.io/pypi/pyversions/memrise"> <img src="https://img.shields.io/pypi/implementation/memrise"> <img src="https://img.shields.io/github/last-commit/tquangsdh20/memrise"> <img src="https://img.shields.io/github/license/tquangsdh20/memrise">
+   <a href="https://github.com/tquangsdh20/memrise/runs/4333596041"><img src="https://github.com/tquangsdh20/text2ipa/actions/workflows/test.yml/badge.svg"></a> <a href="https://app.codecov.io/gh/tquangsdh20/memrise"><img src = "https://codecov.io/gh/tquangsdh20/memrise/branch/main/graphs/badge.svg?branch=main"></a> <img src = "https://img.shields.io/pypi/pyversions/memrise"> <img src="https://img.shields.io/github/last-commit/tquangsdh20/memrise"> <img src="https://img.shields.io/github/license/tquangsdh20/memrise">
 </p>
 
 ## Features:
