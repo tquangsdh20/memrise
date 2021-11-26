@@ -81,17 +81,13 @@ course = Course(1658724,2)
 db.update_course(course)
 ```
 
-### Update course with your language meaning
+### Update the IPA in database
 
-Use the method `update_db_en()` if the LANGUAGE COURSE is **English** for scraping IPA.  
-Use the method `update_db()` if the Language Course is the others.  
-About the parameters of two above methods are the same:  
-- `CourseID` : the ID of the course
-- `Language` : your mother language with format <i>'en', 'fr', 'ko', 'vi'...</i>
+Use the method `update_ipa()` if the LANGUAGE COURSE is **English** for update the IPA information auto.  
 
 ```python
-#If your Course is English language use `update_db_en()`, otherwise use `update_db()` method.
-db.update_db_en(1658724,'fr')
+# Only use for the English course
+db.update_ipa()
 ```
 ### Check the output with SQLite
 
