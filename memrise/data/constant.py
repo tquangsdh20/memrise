@@ -67,7 +67,7 @@ INSERT_WORD = """INSERT INTO
 VALUES (?,?,?,?);"""
 
 # ------------------------------ IPA INSERT------------------------------
-INSERT_IPA = """UPDATE "words" SET IPA = ? WHERE "words".id = ?;"""
+INSERT_IPA = """UPDATE "words" SET "IPA" = ? WHERE "words".id = ?;"""
 WORD_4IPA = """SELECT word
 FROM "words" JOIN "courses"
     ON "words".course_id = "courses".id

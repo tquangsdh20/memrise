@@ -8,26 +8,40 @@ PAGE = "https://app.memrise.com"
 
 
 # ******* Function Define ********
+
+# ---------------- Function -----------------------
+# Name: open_soup(URL) 
+# Type: Local function
+# Feature: Return the Soup of the Level or Course URL
+# --------------------------------------------------
+
 def open_soup(url: str):
     html = requests.get(url)
     soup = BeautifulSoup(html.text, "html.parser")
     return soup
 
+# ---------------- Function -----------------------
+# Name: get_name(Tag,Soup) 
+# Type: Local function
+# Feature: Return the name of the level or the course
+# --------------------------------------------------
 
 def get_name(tag_chr: str, soup: BeautifulSoup):
     tag = soup.find(tag_chr)
     # Must be encoded cause tag.text -> return str (UNICODE Python 3)
-    name = tag.text.strip().encode()
+    name = tag.text.strip()
     return name
 
 
 # ---------------- Function -----------------------
-# get_words () ---> Return list of record of words in Memrise
-# word format: (Word, Meaning, CourseID , LevelID)
+# Name: _get_words (Soup,CoureID,LevelID) 
+# Type: Local function
+# Feature: Return list of record of words in Memrise
+# Format Record : (Word, Meaning, CourseID , LevelID)
 # --------------------------------------------------
 
 
-def get_words(
+def _get_words(
     soup: BeautifulSoup, course_id: Any, level_id: Any
 ) -> List[Tuple[Any, Any, Any, Any]]:
     words = []
@@ -54,10 +68,14 @@ def get_words(
 
 # ******* Class Define **********
 
-# ------------------- Level ----------------------
+# ------------------- Class ----------------------
+# Name: Level
+# Input: (Path,LevelID,CourseID)
+# Path Format: "/course/{CourseID}/{name-of-course}/{LevelID}/"
+# Type: Public Class
 # Methods:
-# get_words() -> list(X) : X = (word , meaning , courseID , LevelID)
-# get_record() -> tuple(X): X = (CourseID, LevelID, LevelName , LanguageID)
+# - `get_words()` -> List[Tuple[Word,Meaning,CourseID,LevelID]]
+# - `get_record()` -> Tuple[CourseID,LevelID,LevelName]
 # -------------------------------------------------
 
 
@@ -73,7 +91,7 @@ class Level:
         self.__soup = open_soup(self.__page)
         __name_tmp = get_name("h3", self.__soup)
         self.__name = __name_tmp
-        self.__words = get_words(self.__soup, CourseID, LevelID)
+        self.__words = _get_words(self.__soup, CourseID, LevelID)
         self.__record = tuple([CourseID, LevelID, self.__name])
 
     def get_words(self) -> List[Any]:
@@ -83,11 +101,14 @@ class Level:
         return self.__record
 
 
-# ------------------- Course ------------------
+# ------------------- Class ----------------------
+# Name: Course
+# Input: (CourseID,LanguageID)
+# Type: Public Class
 # Methods:
-# get_levels() -> list(X) : X = url_level : ......com/course/level1...
-# get_record() -> tuple(X): X = (CourseID, Name, LanguageID)
-# ---------------------------------------------
+# - `get_levels()` -> List[Level]
+# - `get_record()` -> Tuple[CourseID,Name,LanguageID]
+# -------------------------------------------------
 
 
 class Course:

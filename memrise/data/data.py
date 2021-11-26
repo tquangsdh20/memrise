@@ -1,26 +1,27 @@
 import sqlite3
 from text2ipa import get_IPAs
 from .constant import INSERT_IPA, CREATE_TABLE, WORD_IN_ENGLISH_4IPA
+from typing import Any
 
 # Copyright Library https://github.com/ssut/py-googletrans
 # from googletrans import Translator
-from typing import Any
 
+class TypeError(Exception): ...
 
 def mergeList(l1, l2):
     return list(map(lambda x, y: (x, y), l1, l2))
 
 
-# ----------------------------- Class Data ----------------------------
-# methods:
-# __init__ : Create new data base or connect the database
-# if exists with conn & cur elements
-# init_database()  --> Drop all table if exists and create new
-# update_level(Level)  --> INSERT all words in level into Database
-# update_course(Course) --> Update current record of Course and call
-# "update_level()" for all Levels exists in Course
-# update_ipa(IPA) --> Update all record in list for column IPA
-# ---------------------------------------------------------------------
+# ------------------- Class ----------------------
+# Name: _Data_
+# Input: (filename)
+# Type: Pravite Class
+# Methods:
+# - `init_database()` : Initialize database
+# - `_update(CMD,Data)` : CMD is SQL Query statement and Data is List or Tuple type
+# - `update_ipa()` : Auto update English IPA in Database
+# - `close()` : Close the database file
+# -------------------------------------------------
 
 
 class _Data_:
@@ -52,10 +53,7 @@ class _Data_:
                 self.cur.execute(cmd, record)
             self.conn.commit()
         else:
-            from sys import exit
-
-            print("TypeError: Data type must be RECORD or the list of RECORDs")
-            exit()
+            raise TypeError("Data type must be RECORD or the list of RECORDs")
 
     def update_ipa(self):
         """Update IPA auto"""
