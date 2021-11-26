@@ -3,7 +3,7 @@
 </p>
 
 <p align="center"> 
-    <img src="https://img.shields.io/github/license/tquangsdh20/memrise"> <img src = "https://img.shields.io/bitbucket/issues-raw/tquangsdh20/memrise"> <img src = "https://img.shields.io/pypi/pyversions/memrise"> <img src="https://img.shields.io/pypi/implementation/memrise"> <img src="https://img.shields.io/github/last-commit/tquangsdh20/memrise">
+   <img src="https://github.com/tquangsdh20/text2ipa/actions/workflows/test.yml/badge.svg"> <img src="https://img.shields.io/github/license/tquangsdh20/memrise"> <img src = "https://img.shields.io/bitbucket/issues-raw/tquangsdh20/memrise"> <img src = "https://img.shields.io/pypi/pyversions/memrise"> <img src="https://img.shields.io/pypi/implementation/memrise"> <img src="https://img.shields.io/github/last-commit/tquangsdh20/memrise">
 </p>
 
 ## Features:
@@ -124,4 +124,6 @@ Steps : **Execute SQL > Typing SQL Statements > Run**
 
 **v1.0.0**: Implementation Scrapping Vocabulary  
 **v1.1.0**: Update IPA Function   
-**v1.2.0** : Update new TRANSLATE FUNCTION  
+**v1.2.1** : Release check for fixing ERROR IPA and update new TRANSLATE FUNCTION  
+
+<a href="https://github.com/tquangsdh20/memrise"><p align="center"><img src="https://img.shields.io/badge/Github-tquangsdh20-orange?style=social&logo=github"></p></a>
