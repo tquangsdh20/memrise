@@ -3,5 +3,6 @@ def main():
     print(f"Package: {__package__}")
     print("Github: https://github.com/tquangsdh20/memrise")
 
+
 # if __name__ == main():
 #     main()

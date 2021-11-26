@@ -13,6 +13,7 @@ from .extract import Level, Course
 # - `close()` : Close the database file
 # -------------------------------------------------
 
+
 class Data(_Data_):
     """Database for store data\n
     Methods:
@@ -23,15 +24,6 @@ class Data(_Data_):
 
     def update_level(self, level: Level) -> None:
         __level = level.get_record()
-        # try:
-        #     self.__update(INSERT_LEVEL, __level)
-        # except:
-        #     print("RecordError: Fail to update record", __level)
-        # else:
-        #     self.conn.commit()
-        # finally:
-        #     __words = level.get_words()
-        #     self._update(INSERT_WORD, level.get_words())
 
         self._update(INSERT_LEVEL, __level)
         self.conn.commit()

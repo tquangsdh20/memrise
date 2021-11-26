@@ -6,7 +6,10 @@ from typing import Any
 # Copyright Library https://github.com/ssut/py-googletrans
 # from googletrans import Translator
 
-class TypeError(Exception): ...
+
+class TypeError(Exception):
+    ...
+
 
 def mergeList(l1, l2):
     return list(map(lambda x, y: (x, y), l1, l2))

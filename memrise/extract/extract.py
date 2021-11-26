@@ -10,21 +10,24 @@ PAGE = "https://app.memrise.com"
 # ******* Function Define ********
 
 # ---------------- Function -----------------------
-# Name: open_soup(URL) 
+# Name: open_soup(URL)
 # Type: Local function
 # Feature: Return the Soup of the Level or Course URL
 # --------------------------------------------------
+
 
 def open_soup(url: str):
     html = requests.get(url)
     soup = BeautifulSoup(html.text, "html.parser")
     return soup
 
+
 # ---------------- Function -----------------------
-# Name: get_name(Tag,Soup) 
+# Name: get_name(Tag,Soup)
 # Type: Local function
 # Feature: Return the name of the level or the course
 # --------------------------------------------------
+
 
 def get_name(tag_chr: str, soup: BeautifulSoup):
     tag = soup.find(tag_chr)
@@ -34,7 +37,7 @@ def get_name(tag_chr: str, soup: BeautifulSoup):
 
 
 # ---------------- Function -----------------------
-# Name: _get_words (Soup,CoureID,LevelID) 
+# Name: _get_words (Soup,CoureID,LevelID)
 # Type: Local function
 # Feature: Return list of record of words in Memrise
 # Format Record : (Word, Meaning, CourseID , LevelID)

@@ -37,6 +37,7 @@ pytest-cov = "^2.12"
 mypy = "^0.910"
 bs4 = "^0.0"
 black = "^0.0"
+text2ipa = "^1.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0","wheel","setuptools"]
