@@ -1,0 +1,65 @@
+[tool.poetry]
+name = "memrise"
+version = "1.2.0rc5"
+description = "Scraping the vocabulary from the Memrise course"
+authors = ["Joseph Quang <tquangsdh20@hcmut.edu.vn>"]
+readme = "README.md"
+repository = "https://github.com/tquangsdh20/memrise"
+license = "MIT"
+classifiers = [
+    "Intended Audience :: Education",
+    "Intended Audience :: End Users/Desktop",
+    "Development Status :: 5 - Production/Stable",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10"
+]
+packages = [
+    { include = "memrise" },
+    { include = "memrise/**/*.py" },
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+requests = "^2.23"
+flake8 = "^3.9"
+tox = "^3.9"
+pytest-cov = "^2.12"
+mypy = "^0.910"
+bs4 = "^0.0"
+black = "^0.0"
+text2ipa = "^1.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0","wheel","setuptools"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.pytest.ini_options]
+addopts = "--cov=slapping"
+testpaths = [
+    "tests",
+]
+
+[tool.mypy]
+mypy_path = "stubs"
+check_untyped_defs = true
+disallow_any_generics = true
+no_implicit_optional = true
+show_error_codes = true
+strict_equality = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+no_implicit_reexport = true
+ignore_missing_imports = true

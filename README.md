@@ -1,9 +1,9 @@
 <p align="center">
-    <img src=".github/memrise.svg?sanitize=true" />
+    <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/memrise.svg">
 </p>
 
 <p align="center"> 
-    <img src="https://img.shields.io/github/license/tquangsdh20/memrise"> <img src = "https://img.shields.io/bitbucket/issues-raw/tquangsdh20/memrise"> <img src = "https://img.shields.io/pypi/pyversions/memrise"> <img src="https://img.shields.io/pypi/implementation/memrise"> <img src="https://img.shields.io/github/last-commit/tquangsdh20/memrise">
+   <img src="https://github.com/tquangsdh20/text2ipa/actions/workflows/test.yml/badge.svg"> <img src="https://img.shields.io/github/license/tquangsdh20/memrise"> <img src = "https://img.shields.io/bitbucket/issues-raw/tquangsdh20/memrise"> <img src = "https://img.shields.io/pypi/pyversions/memrise"> <img src="https://img.shields.io/pypi/implementation/memrise"> <img src="https://img.shields.io/github/last-commit/tquangsdh20/memrise">
 </p>
 
 ## Features:
@@ -30,10 +30,10 @@
 
 ### How to take Course ID?
 
-Access the Website: [Memrise](https://app.memrise.com/) and copy the Course ID as the following picture:
+Access the Website: [Memrise](https://app.memrise.com/course/) and copy the Course ID as the following picture:
 
 <p align="center">
-  <img src=".github/CourseID.PNG?sanitize=true">
+  <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/CourseID.PNG">
 </p>
 
 ### Import library and initialize database
@@ -98,13 +98,13 @@ db.update_db_en(1658724,'fr')
 File output
 
 <p align="center">
-  <img src=".github/OUTPUT.PNG?sanitize=true" height=200 width=600 />
+  <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/OUTPUT.PNG" height=200 width=600 />
 </p>
 
 Show the words table as the following steps: **Browse Data > Table > Word**
 
 <p align="center">
-  <img src=".github/OUTPUT2.PNG?sanitize=true" height=500 width=800 />
+  <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/OUTPUT2.PNG" height=500 width=800>
 </p>
 
 If you want to choose the raw meaning, you could run the following SQL statement.
@@ -115,7 +115,7 @@ SELECT word, sub, IPA FROM words
 Steps : **Execute SQL > Typing SQL Statements > Run**
 
 <p align="center">
-  <img src=".github/OUTPUT3.PNG?sanitize=true" height=500 width=800 />
+  <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/OUTPUT3.PNG" height=500 width=800>
 </p>
 
 [<b>Github:</b> https://github.com/tquangsdh20/memrise](https://github.com/tquangsdh20/memrise)
@@ -124,6 +124,6 @@ Steps : **Execute SQL > Typing SQL Statements > Run**
 
 **v1.0.0**: Implementation Scrapping Vocabulary  
 **v1.1.0**: Update IPA Function   
-**v1.1.0rc0** : Release check for fixing ERROR IPA and update new TRANSLATE FUNCTION  
+**v1.2.1** : Release check for fixing ERROR IPA and update new TRANSLATE FUNCTION  
 
 <a href="https://github.com/tquangsdh20/memrise"><p align="center"><img src="https://img.shields.io/badge/Github-tquangsdh20-orange?style=social&logo=github"></p></a>
