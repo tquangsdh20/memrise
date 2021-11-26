@@ -118,7 +118,6 @@ Steps : **Execute SQL > Typing SQL Statements > Run**
   <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/OUTPUT3.PNG" height=500 width=800>
 </p>
 
-[<b>Github:</b> https://github.com/tquangsdh20/memrise](https://github.com/tquangsdh20/memrise)
 
 ### Log changes:
 
