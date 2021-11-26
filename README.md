@@ -125,3 +125,5 @@ Steps : **Execute SQL > Typing SQL Statements > Run**
 **v1.0.0**: Implementation Scrapping Vocabulary  
 **v1.1.0**: Update IPA Function   
 **v1.1.0rc0** : Release check for fixing ERROR IPA and update new TRANSLATE FUNCTION  
+
+<a href="https://github.com/tquangsdh20/memrise"><p align="center"><img src="https://img.shields.io/badge/Github-tquangsdh20-orange?style=social&logo=github"></p></a>
