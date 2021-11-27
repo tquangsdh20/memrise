@@ -1,6 +1,12 @@
 import sqlite3
 from text2ipa import get_IPAs
-from .constant import INSERT_IPA, CREATE_TABLE, WORD_IN_ENGLISH_4IPA
+from .constant import (
+    INSERT_IPA,
+    CREATE_TABLE,
+    WORD_IN_ENGLISH_4IPA,
+    LANGUAGES,
+    INIT_LANGUAGE,
+)
 from typing import Any
 
 # Copyright Library https://github.com/ssut/py-googletrans
@@ -9,10 +15,6 @@ from typing import Any
 
 class TypeError(Exception):
     ...
-
-
-def mergeList(l1, l2):
-    return list(map(lambda x, y: (x, y), l1, l2))
 
 
 # ------------------- Class ----------------------
@@ -44,6 +46,8 @@ class _Data_:
         """Create all necessary tables in Database"""
         self.cur.executescript(CREATE_TABLE)
         self.conn.commit()
+        self._update(INIT_LANGUAGE, LANGUAGES)
+        self.conn.commit()
 
     # Helping update database with CMD and List Records or Record
     def _update(self, cmd, data: Any):
@@ -55,11 +59,21 @@ class _Data_:
             for record in data:
                 self.cur.execute(cmd, record)
             self.conn.commit()
+        elif isinstance(data, dict):
+            for record in data.items():
+                self.cur.execute(cmd, record)
+            self.conn.commit()
         else:
             raise TypeError("Data type must be RECORD or the list of RECORDs")
 
-    def update_ipa(self):
+    def update_ipa(self, language="am"):
         """Update IPA auto"""
+        # Validation
+        if language not in ["am", "br"]:
+            raise Exception('Language input must be "am" or "br"')
+        else:
+            # Do nothing
+            ...
         # Get all English words with records
         # (WordID, Word, Language)
         self.cur.execute(WORD_IN_ENGLISH_4IPA)
@@ -69,9 +83,12 @@ class _Data_:
         for record in records:
             ids.append(record[0])
             ipas.append(record[1])
-        ipa = get_IPAs(ipas, records[0][2])
-        retL = mergeList(ipa, ids)
+        ipa = get_IPAs(ipas, language)
+        retL = self._mergeList(ipa, ids)
         self._update(INSERT_IPA, retL)
+
+    def _mergeList(self, l1, l2):
+        return list(map(lambda x, y: (x, y), l1, l2))
 
     def close(self):
         """1. Commit change

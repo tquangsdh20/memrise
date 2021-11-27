@@ -2,34 +2,31 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from typing import Any, List, Tuple
-
-
-PAGE = "https://app.memrise.com"
-
+from .const import PAGE, LANGCODES
 
 # ******* Function Define ********
 
 # ---------------- Function -----------------------
-# Name: open_soup(URL)
+# Name: _open_soup(URL)
 # Type: Local function
 # Feature: Return the Soup of the Level or Course URL
 # --------------------------------------------------
 
 
-def open_soup(url: str):
+def _open_soup(url: str):
     html = requests.get(url)
     soup = BeautifulSoup(html.text, "html.parser")
     return soup
 
 
 # ---------------- Function -----------------------
-# Name: get_name(Tag,Soup)
+# Name: _get_name(Tag,Soup)
 # Type: Local function
 # Feature: Return the name of the level or the course
 # --------------------------------------------------
 
 
-def get_name(tag_chr: str, soup: BeautifulSoup):
+def _get_name(tag_chr: str, soup: BeautifulSoup):
     tag = soup.find(tag_chr)
     # Must be encoded cause tag.text -> return str (UNICODE Python 3)
     name = tag.text.strip()
@@ -69,6 +66,38 @@ def _get_words(
     return records
 
 
+# ---------------- Function -----------------------
+# Name: _get_language(CourseID)
+# Type: Local function
+# Feature: Return the language name of the course lower
+# Format Record : (Word, Meaning, CourseID , LevelID)
+# --------------------------------------------------
+
+
+def _get_language_code(soup):
+    # url = f"https://app.memrise.com/course/{courseid}/"
+    # res = requests.get(url)
+    # soup = BeautifulSoup(res.text,'html.parser')
+    tags = soup("a")
+    languages = []
+    for tag in tags:
+        href = tag["href"]
+        if re.match("/courses/(.+)/(.+)/", href):
+            text = re.findall("[a-z]+/$", href)
+            if len(text) > 0:
+                languages.append(text[0][0:-1])
+            else:
+                # Do nothing
+                ...
+    language = languages[-1]
+    if language == "us" or language == "uk":
+        language = "english"
+    else:
+        # Do nothing
+        ...
+    return LANGCODES[language]
+
+
 # ******* Class Define **********
 
 # ------------------- Class ----------------------
@@ -91,8 +120,8 @@ class Level:
     def __init__(self, path, LevelID, CourseID):
         __page_tmp = PAGE + path
         self.__page = __page_tmp
-        self.__soup = open_soup(self.__page)
-        __name_tmp = get_name("h3", self.__soup)
+        self.__soup = _open_soup(self.__page)
+        __name_tmp = _get_name("h3", self.__soup)
         self.__name = __name_tmp
         self.__words = _get_words(self.__soup, CourseID, LevelID)
         self.__record = tuple([CourseID, LevelID, self.__name])
@@ -120,15 +149,15 @@ class Course:
     - `get_levels()` : get all the words in the current level
     - `get_record()` : get the information about the current level"""
 
-    def __init__(self, course_id: int, language_id: int):
+    def __init__(self, course_id: int):
         __page_tmp = PAGE + "/course/" + str(course_id)
         self.__page = __page_tmp
-        self.__soup = open_soup(self.__page)
+        self.__soup = _open_soup(self.__page)
         self.course_id = course_id
-        # Get name data type is char* ~ bytes
-        __name_tmp = get_name("h1", self.__soup)
+        __name_tmp = _get_name("h1", self.__soup)
+        __language = _get_language_code(self.__soup)
         self.__name = __name_tmp
-        self.__record = tuple([course_id, self.__name, language_id])
+        self.__record = tuple([course_id, self.__name, __language])
         self.__levels = self.__get_levels(self.__soup)
 
     def get_levels(self) -> List[Level]:

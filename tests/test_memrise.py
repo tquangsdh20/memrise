@@ -5,7 +5,7 @@ import unittest
 
 
 def test_version():
-    assert __version__ == "1.2.1"
+    assert __version__ == "1.3.1"
 
 
 def test_main():
@@ -69,8 +69,7 @@ class TestLevelMethods(unittest.TestCase):
 # -------------------------------------------------
 path = "/course/6033092/food-and-drink/2/"
 course_id = 6033092
-language_id = 5
-COURSE = Course(course_id, language_id)
+COURSE = Course(course_id)
 LEVEL1 = Level(path, 2, course_id)
 
 
@@ -84,7 +83,7 @@ class TestCourseMethods(unittest.TestCase):
 
     def test_get_record(self):
         record = COURSE.get_record()
-        self.assertTupleEqual(record, (6033092, "FOOD AND DRINK", 5))
+        self.assertTupleEqual(record, (6033092, "FOOD AND DRINK", "fr"))
 
 
 # ------------------- Class ----------------------
@@ -127,8 +126,8 @@ class TestDataMethods(unittest.TestCase):
     def test_update_level(self):
         DB.init_database()
         DB.cur.execute(
-            """INSERT INTO "courses" ("id", "name", "language_id") VALUES (?,?,?);""",
-            (6033092, "FOOD AND DRINK", 5),
+            """INSERT INTO "courses" ("id", "name", "language_code") VALUES (?,?,?);""",
+            (6033092, "FOOD AND DRINK", "fr"),
         )
         DB.update_level(LEVEL)
         DB.cur.execute("SELECT word from words ;")
@@ -165,7 +164,7 @@ class TestDataMethods(unittest.TestCase):
 
     def test_update_ipa(self):
         DB.init_database()
-        course = Course(6056798, 2)
+        course = Course(6056798)
         DB.update_course(course)
         DB.update_ipa()
         DB.conn.commit()
@@ -190,6 +189,59 @@ class TestDataMethods(unittest.TestCase):
         # Test in case of wrong data type
         with self.assertRaises(TypeError):
             DB._update("ANY", "str")
+
+    def test_update_trans(self):
+        DB.init_database()
+        DB.update_course(COURSE)
+        DB.update_trans("vi")
+        DB.cur.execute("SELECT sub FROM words WHERE id = 1;")
+        le_pain = DB.cur.fetchone()[0]
+        DB.cur.execute("SELECT sub FROM words WHERE id = 14;")
+        le_sucre = DB.cur.fetchone()[0]
+        self.assertEqual(le_pain, "bánh mì")
+        self.assertEqual(le_sucre, "đường")
+
+    def test_update_trans2(self):
+        DB.init_database()
+        course = Course(22542)
+        DB.update_course(course)
+        DB.update_trans("vi")
+        DB.cur.execute("SELECT sub FROM words WHERE id = 1;")
+        first = DB.cur.fetchone()[0]
+        DB.cur.execute("SELECT sub FROM words WHERE id = 2;")
+        second = DB.cur.fetchone()[0]
+        self.assertEqual(first, "london")
+        self.assertEqual(second, "thuê")
+
+    def test_update_trans3(self):
+        DB.init_database()
+        # Japanese course
+        course = Course(1389173)
+        DB.update_course(course)
+        DB.update_trans("vi")
+        DB.cur.execute("SELECT sub FROM words WHERE id = 1;")
+        first = DB.cur.fetchone()[0]
+        self.assertEqual(first, "à chính nó đấy")
+        DB.cur.execute("SELECT sub FROM words WHERE id = 2;")
+        second = DB.cur.fetchone()[0]
+        self.assertEqual(second, "có lẽ")
+
+    def test_update_trans4(self):
+        DB.init_database()
+        # Japanese course
+        course = Course(2141906)
+        course2 = Course(2141908)
+        course3 = Course(1125956)
+        DB.update_course(course)
+        DB.update_course(course2)
+        DB.update_course(course3)
+        DB.update_trans("ja")
+        DB.cur.execute("SELECT sub FROM words WHERE id = 5;")
+        first = DB.cur.fetchone()[0]
+        self.assertEqual(first, "行こう")
+        DB.cur.execute("SELECT sub FROM words WHERE id = 7;")
+        second = DB.cur.fetchone()[0]
+        self.assertEqual(second, "しよう")
 
     def test_close(self):
         file = "test_close.db"
