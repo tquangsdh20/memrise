@@ -1,5 +1,13 @@
-from .data import _Data_, INSERT_LEVEL, INSERT_WORD, INSERT_COURSE
+from .data.constant import (
+    INSERT_SUB,
+    INSERT_LEVEL,
+    INSERT_WORD,
+    INSERT_COURSE,
+    WORD_4TRANS,
+)
+from .data import _Data_
 from .extract import Level, Course
+from .translator import transUntilDone
 
 # ------------------- Class ----------------------
 # Name: Data
@@ -38,3 +46,18 @@ class Data(_Data_):
         for level in levels:
             self.update_level(level)
             self.conn.commit()
+
+    def update_trans(self, language: str) -> None:
+        """Auto Update Translated Text"""
+        self.cur.execute(WORD_4TRANS)
+        # word_id | word | language_code
+        records = self.cur.fetchall()
+        bulk = []
+        ids = []
+        language_src = records[0][2]
+        for record in records:
+            ids.append(record[0])
+            bulk.append(record[1])
+        trans = transUntilDone(bulk, language_src, language, "\r\n")
+        retList = self._mergeList(trans, ids)
+        self._update(INSERT_SUB, retList)

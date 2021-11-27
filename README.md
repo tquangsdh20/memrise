@@ -8,32 +8,40 @@
 
 ## Features:
 - Support scraping the courses in MEM to take the vocabulary
+- Translate the words to your own language
+- Get the IPA for the English course
 
+## Installation
+
+**Window**
+```msDoc
+python -m pip install memrise
+```
+**Linux**
+```
+pip install memrise
+```
+**macOS**
+```
+sudo pip3 install memrise
+```
 ## Appplication Requires
 
 ### Install DB Browser : [SQLite](https://sqlitebrowser.org/dl/)
 
 ### Install Library: 
-<b>Window</b>
 ```
- python -m pip install memrise
+pip install googletrans==4.0.0rc1
 ```
-<b>Linux</b>
-  ```
-  pip install memrise
-  ```
- <b>macOS</b>
- ```
- sudo pip3 install memrise
-```
+
 ## Guidelines
 
 ### How to take Course ID?
 
-Access the Website: [Memrise](https://app.memrise.com/course/) and copy the Course ID as the following picture:
+Access the [Memrise Website](https://app.memrise.com/course/) and copy the Course ID as the following picture
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/CourseID.PNG">
+  <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/courseid.svg">
 </p>
 
 ### Import library and initialize database
@@ -41,79 +49,103 @@ Access the Website: [Memrise](https://app.memrise.com/course/) and copy the Cour
 ```python
 from memrise import Course, Data
 #Create file database output
-db = Data('English.sqlite') #Other format is .db
+db = Data('English.db') # Or *.sqlite easy to open
 #Connect to file database and init
 db.init_database()
 ```
 
 ### Scraping course with ID
 
-Regarding to Module Course with two paramemters:
-- `CourseID`: Get the Course ID as above
-- `LanguageID`: The Language ID of the Course which you study.
+The following example is scraping [the English course](https://app.memrise.com/course/2157577/anglais-britannique-2/) for the French 
 
-Where, the LanguageID is define as the followings:
-The output will give you the List Language's ID of the Course, remember the ID for next step. 
-
-```
-Language IDs:        
-    1. English UK    
-    2. English US    
-    3. Chinese       
-    4. Janpanese     
-    5. French        
-    6. Spanish Mexico
-    7. Italian
-    8. German
-    9. Russian
-    10. Dutch
-    11. Korean
-    12. Arabic
-    13. Spanish Spain
-
-```
-
-The following example is scraping the English course for Vietnamese with IPA of English US, so the Language ID is 2.
 ```python
-#Connect the course to scraping info this maybe take a few momment.
-course = Course(1658724,2)
-#Update information about the course
+# Connect the course to scraping info this maybe take a few momment.
+course = Course(2157577)
+# Update information about the course
 db.update_course(course)
 ```
 
 ### Update the IPA in database
 
-Use the method `update_ipa()` if the LANGUAGE COURSE is **English** for update the IPA information auto.  
+Use the method `update_ipa()` if the **Language Course** is **English** for update the IPA information auto.  
+The parameter `language` default is `br`  
+- `br` : English UK
+- `am` : English US
 
 ```python
-# Only use for the English course
+# Update IPA for database with default `br`
 db.update_ipa()
+# Use the follow if English US
+# db.update_ipa('am')
 ```
-### Check the output with SQLite
 
-File output
+### Translate the vocaburaly to your own language
+
+Use the method `update_trans(language)`  
+
+The parameter `language` follow the [ISO 639-1 codes](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) as the bottom
+
+```python
+# Translate to Vietnamese
+db.update_trans('vi')
+```
+
+### Show the output with SQLite Browser Application
+
+Open the SQLite Browser Application and follow the steps below
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/OUTPUT.PNG" height=200 width=600 />
+  <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/output1.svg">
 </p>
-
-Show the words table as the following steps: **Browse Data > Table > Word**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/OUTPUT2.PNG" height=500 width=800>
+   <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/output2.svg"> 
 </p>
 
-If you want to choose the raw meaning, you could run the following SQL statement.
+Feel free to make your own course with the SQL query
 
-```SQL
-SELECT word, sub, IPA FROM words
-```
 Steps : **Execute SQL > Typing SQL Statements > Run**
 
+```SQL
+SELECT word, sub, IPA FROM words ; 
+```
+
 <p align="center">
-  <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/OUTPUT3.PNG" height=500 width=800>
+  <img src="https://raw.githubusercontent.com/tquangsdh20/memrise/main/.github/sql.svg">
 </p>
 
+## Languages ISO369-1 Code
+
+
+```
+af : afrikaans                 fy : frisian                   ky : kyrgyz                sr : serbian
+sq : albanian                  gl : galician                  lo : lao                   st : sesotho
+am : amharic                   ka : georgian                  la : latin                 sn : shona
+ar : arabic                    de : german                    lv : latvian               sd : sindhi
+hy : armenian                  el : greek                     lt : lithuanian            si : sinhala
+az : azerbaijani               gu : gujarati                  lb : luxembourgish         sk : slovak
+eu : basque                    ht : haitian creole            mk : macedonian            sl : slovenian
+be : belarusian                ha : hausa                     mg : malagasy              so : somali
+bn : bengali                   haw : hawaiian                 ms : malay                 es : spanish
+bs : bosnian                   iw : hebrew                    ml : malayalam             su : sundanese
+bg : bulgarian                 he : hebrew                    mt : maltese               sw : swahili
+ca : catalan                   hi : hindi                     mi : maori                 sv : swedish
+ceb : cebuano                  hmn : hmong                    mr : marathi               tg : tajik
+ny : chichewa                  hu : hungarian                 mn : mongolian             ta : tamil
+zh-cn : chinese (simplified)   is : icelandic                 my : myanmar (burmese)     te : telugu
+zh-tw : chinese (traditional)  ig : igbo                      ne : nepali                th : thai
+co : corsican                  id : indonesian                no : norwegian             tr : turkish
+hr : croatian                  ga : irish                     or : odia                  uk : ukrainian
+cs : czech                     it : italian                   ps : pashto                ur : urdu
+da : danish                    ja : japanese                  fa : persian               ug : uyghur
+nl : dutch                     jw : javanese                  pl : polish                uz : uzbek
+en : english                   kn : kannada                   pt : portuguese            vi : vietnamese
+eo : esperanto                 kk : kazakh                    pa : punjabi               cy : welsh
+et : estonian                  km : khmer                     ro : romanian              xh : xhosa
+tl : filipino                  ko : korean                    ru : russian               yi : yiddish
+fi : finnish                   ku : kurdish (kurmanji)        sm : samoan                yo : yoruba
+fr : french                    gd : scots gaelic              zu : zulu       
+```
 
 ### Log changes:
 
