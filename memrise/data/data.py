@@ -17,10 +17,6 @@ class TypeError(Exception):
     ...
 
 
-def mergeList(l1, l2):
-    return list(map(lambda x, y: (x, y), l1, l2))
-
-
 # ------------------- Class ----------------------
 # Name: _Data_
 # Input: (filename)

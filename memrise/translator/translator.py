@@ -27,7 +27,7 @@ def _transLimit(bulk: List[str], src: str, dest: str, sep: str) -> List[str]:
     else:
         # Doing nothing CChecker
         ...
-    return trans
+    return list(trans)
 
 
 def get_trans(bulk: List[str], src: str, dest: str, sep: str, limit: int) -> List[str]:

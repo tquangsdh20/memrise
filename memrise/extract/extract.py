@@ -75,16 +75,26 @@ def _get_words(
 
 
 def _get_language_code(soup):
-
+    # url = f"https://app.memrise.com/course/{courseid}/"
+    # res = requests.get(url)
+    # soup = BeautifulSoup(res.text,'html.parser')
     tags = soup("a")
     languages = []
     for tag in tags:
         href = tag["href"]
-        if re.match("/courses/([a-z]+)/([a-z]+)/", href):
-            text = re.findall("[a-z]+/$", href)[0]
-            languages.append(text[0:-1])
-
+        if re.match("/courses/(.+)/(.+)/", href):
+            text = re.findall("[a-z]+/$", href)
+            if len(text) > 0:
+                languages.append(text[0][0:-1])
+            else:
+                # Do nothing
+                ...
     language = languages[-1]
+    if language == "us" or language == "uk":
+        language = "english"
+    else:
+        # Do nothing
+        ...
     return LANGCODES[language]
 
 
@@ -144,7 +154,6 @@ class Course:
         self.__page = __page_tmp
         self.__soup = _open_soup(self.__page)
         self.course_id = course_id
-        # Get name data type is char* ~ bytes
         __name_tmp = _get_name("h1", self.__soup)
         __language = _get_language_code(self.__soup)
         self.__name = __name_tmp

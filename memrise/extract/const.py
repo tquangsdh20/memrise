@@ -1,3 +1,6 @@
+from typing import Dict
+
+
 PAGE = "https://app.memrise.com"
 LANGUAGES = {
     "af": "afrikaans",
@@ -109,4 +112,12 @@ LANGUAGES = {
     "zu": "zulu",
 }
 
-LANGCODES = dict(map(reversed, LANGUAGES.items()))
+
+def dict_reversed(dictn: Dict[str, str]) -> Dict[str, str]:
+    lang = {}
+    for k, v in dictn.items():
+        lang[v] = k
+    return lang
+
+
+LANGCODES = dict_reversed(LANGUAGES)
