@@ -6,4 +6,4 @@ from .translator import transUntilDone
 
 
 __all__ = ["Level", "Course", "Data", "TypeError", "transUntilDone"]
-__version__ = "1.2.1"
+__version__ = "1.3.1"
