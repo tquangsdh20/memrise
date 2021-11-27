@@ -190,6 +190,11 @@ class TestDataMethods(unittest.TestCase):
         with self.assertRaises(TypeError):
             DB._update("ANY", "str")
 
+    def test_update_ipa2(self):
+        # Test in case of wrong data type
+        with self.assertRaises(Exception):
+            DB.update_ipa('as')
+
     def test_update_trans(self):
         DB.init_database()
         DB.update_course(COURSE)
