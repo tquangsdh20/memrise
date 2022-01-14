@@ -1,7 +1,7 @@
 from memrise import Course, Data
 
 
-file = 'test.db'
+file = "test.db"
 db = Data(file)
 
 course = Course(2157577)
@@ -14,6 +14,6 @@ db.update_course(course)
 # Update IPA for database
 db.update_ipa()
 # Translate the vocabulary to your own language
-db.update_trans('vi')
+db.update_trans("vi")
 # Close the database
 db.close()

@@ -44,8 +44,8 @@ def _get_name(tag_chr: str, soup: BeautifulSoup):
 def _get_words(
     soup: BeautifulSoup, course_id: Any, level_id: Any
 ) -> List[Tuple[Any, Any, Any, Any]]:
-    tags_a = soup('div',{"class":"col_a"})
-    tags_b = soup('div',{"class":"col_b"})
+    tags_a = soup("div", {"class": "col_a"})
+    tags_b = soup("div", {"class": "col_b"})
     records: List[Tuple[Any, Any, Any, Any]] = []
     for idx in range(len(tags_a)):
         record = (tags_a[idx].text, tags_b[idx].text, course_id, level_id)
@@ -152,11 +152,11 @@ class Course:
 
     def __get_levels(self, soup) -> List[Level]:
         # Get all levels with Regular Expression End with "Digital/"
-        tags = soup.find_all('a',{"class":"level clearfix"})
+        tags = soup.find_all("a", {"class": "level clearfix"})
         levels: List[Level] = []
         for idx in range(len(tags)):
-            item = tags[idx]['href']
-            level = Level(item, idx+1, self.course_id)
+            item = tags[idx]["href"]
+            level = Level(item, idx + 1, self.course_id)
             levels.append(level)
 
         return levels

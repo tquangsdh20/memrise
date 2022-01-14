@@ -193,7 +193,7 @@ class TestDataMethods(unittest.TestCase):
     def test_update_ipa2(self):
         # Test in case of wrong data type
         with self.assertRaises(Exception):
-            DB.update_ipa('as')
+            DB.update_ipa("as")
 
     def test_update_trans(self):
         DB.init_database()
@@ -231,22 +231,22 @@ class TestDataMethods(unittest.TestCase):
         second = DB.cur.fetchone()[0]
         self.assertEqual(second, "có lẽ")
 
-    def test_update_trans4(self):
-        DB.init_database()
-        # Japanese course
-        course = Course(2141906)
-        course2 = Course(2141908)
-        course3 = Course(1125956)
-        DB.update_course(course)
-        DB.update_course(course2)
-        DB.update_course(course3)
-        DB.update_trans("ja")
-        DB.cur.execute("SELECT sub FROM words WHERE id = 5;")
-        first = DB.cur.fetchone()[0]
-        self.assertEqual(first, "行こう")
-        DB.cur.execute("SELECT sub FROM words WHERE id = 7;")
-        second = DB.cur.fetchone()[0]
-        self.assertEqual(second, "しよう")
+    # def test_update_trans4(self):
+    #     DB.init_database()
+    #     # Japanese course
+    #     course = Course(2141906)
+    #     course2 = Course(2141908)
+    #     course3 = Course(1125956)
+    #     DB.update_course(course)
+    #     DB.update_course(course2)
+    #     DB.update_course(course3)
+    #     DB.update_trans("ja")
+    #     DB.cur.execute("SELECT sub FROM words WHERE id = 5;")
+    #     first = DB.cur.fetchone()[0]
+    #     self.assertEqual(first, "行こう")
+    #     DB.cur.execute("SELECT sub FROM words WHERE id = 7;")
+    #     second = DB.cur.fetchone()[0]
+    #     self.assertEqual(second, "しよう")
 
     def test_close(self):
         file = "test_close.db"
