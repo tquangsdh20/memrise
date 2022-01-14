@@ -44,24 +44,11 @@ def _get_name(tag_chr: str, soup: BeautifulSoup):
 def _get_words(
     soup: BeautifulSoup, course_id: Any, level_id: Any
 ) -> List[Tuple[Any, Any, Any, Any]]:
-    words = []
-    meanings = []
-    tags = soup("div")
-    count = 0
-    # Filter with col_a & col_b
-    for tag in tags:
-        item = tag.get("class")
-        if item is None:
-            continue
-        if "col_a" in item:
-            words.append(tag.text)
-        if "col_b" in item:
-            count += 1
-            meanings.append(tag.text)
-    records = list()
-    # Get make words in records list: word | meaning | courseID | LevelID
-    for i in range(count):
-        record = (words[i], meanings[i], course_id, level_id)
+    tags_a = soup('div',{"class":"col_a"})
+    tags_b = soup('div',{"class":"col_b"})
+    records: List[Tuple[Any, Any, Any, Any]] = []
+    for idx in range(len(tags_a)):
+        record = (tags_a[idx].text, tags_b[idx].text, course_id, level_id)
         records.append(record)
     return records
 
@@ -165,16 +152,13 @@ class Course:
 
     def __get_levels(self, soup) -> List[Level]:
         # Get all levels with Regular Expression End with "Digital/"
-        tags = soup("a")
-        levels = list()
-        expr = "/(\\d)+/$"  # End with "{digital}/"
-        count = 1
-        for tag in tags:
-            item = tag.get("href", None)
-            if re.search(expr, item) is not None:
-                level = Level(item, count, self.course_id)
-                levels.append(level)
-                count += 1
+        tags = soup.find_all('a',{"class":"level clearfix"})
+        levels: List[Level] = []
+        for idx in range(len(tags)):
+            item = tags[idx]['href']
+            level = Level(item, idx+1, self.course_id)
+            levels.append(level)
+
         return levels
 
     def get_record(self) -> Tuple[Any, ...]:
